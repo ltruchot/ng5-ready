@@ -1,4 +1,4 @@
-/***************** ES5 ***************/
+/** *************** ES5 ***************/
 // "window" in browser
 // window.console.log('test 3');
 window.test = 'bonjour';
@@ -15,7 +15,7 @@ function lire () {
 	relire();
 }
 // lire();
-//console.log(test2);
+// console.log(test2);
 
 // primary types vs objects: reference value vs reference
 var livre = 'crime et châtiment';
@@ -54,13 +54,12 @@ function Livre (auteur, titre) {
 	};
 }
 
-
-var livre = new Livre('Platon', 'Le banquet');
+var livre = new Livre('Platon', 'Le banquets');
 var livre2 = new Livre('Aristote', 'De l\'âme');
 console.log(livre, livre2);
 livre2.direTitre();
 
-/***************** ES6+ ***************/
+/** *************** ES6+ ***************/
 // import/export
 
 // let, const
