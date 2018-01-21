@@ -1,75 +1,105 @@
-/** *************** ES5 ***************/
-// "window" in browser
-// window.console.log('test 3');
-window.test = 'bonjour';
-// var, scope, globals
-var test2 = 'aurevoir';
-// console.log(test2);
-
-function lire () {
-	var test2 = 'un livre';
-	console.log(test2);
-	function relire () {
-		console.log(test2);
-	}
-	relire();
-}
-// lire();
-// console.log(test2);
-
-// primary types vs objects: reference value vs reference
-var livre = 'crime et châtiment';
-var isBlack = true;
-var count = 56;
-
-var bouquin = livre;
-// console.log(bouquin);
-livre = 'le joueur';
-// console.log(livre);
-
-var monObjet = { prenom: 'Loïc'};
-var monObjet2 = { prenom: 'Loïc'};
-monObjet2.nom = 'Truchot';
-// console.log(monObjet);
-
-// check equality, falsy, truthy
-// console.log(monObjet === monObjet2);
-
-// closure
-function test18 () {
-	var test19 = 'bonjour';
-	return function () {
-		console.log(test19);
-	};
-}
-var func = test18();
-// func();
-
-// this
-function Livre (auteur, titre) {
-	this.auteur = auteur;
-	this.titre = titre;
-	this.direTitre = function () {
-		console.log('le titre de cet ouvrage est', this.titre);
-	};
-}
-
-var livre = new Livre('Platon', 'Le banquets');
-var livre2 = new Livre('Aristote', 'De l\'âme');
-console.log(livre, livre2);
-livre2.direTitre();
-
 /** *************** ES6+ ***************/
-// import/export
+import { Livre, Roman } from './Livre';
 
 // let, const
+// const livre = 'le rouge et noir';
+// if (typeof livre === 'string') {
+// 	let auteur = 'stendhal';
+// 	auteur = 'dosto';
+// }
+// for (let i = 0; i < 10; i++) {
+// 	setTimeout(function () {
+// 		// console.log(i);
+// 	}, i * 1000);
+// }
+const livres = [{nom: 'Le joueur', prix: 20}];
+livres.push({nom: 'La joueuse', prix: 22});
+livres.push({nom: 'La clef', prix: 25});
 
 // array methods
+livres.forEach(function (livre) {
+	// console.log(livre.nom);
+});
+const bibliotheque = livres.map(function (livre) {
+	livre.editeur = 'acte sud';
+	return livre;
+});
+// console.log(bibliotheque);
+const total = livres.reduce(function (accumulateur, livre) {
+	return accumulateur + livre.prix;
+}, 0);
+// console.log(total / livres.length);
+const livrePasCher = livres.find(function (livre) {
+	return livre.prix === 20;
+});
+// console.log(livrePasCher);
+const livresChers = livres.filter(function (livre) {
+	return livre.prix > 21;
+});
+// console.log(livresChers);
 
-// spread operator
+const livre1 = new Livre(25, 'la clef');
+const livre2 = new Livre(26, 'le chuchoteur');
+// console.log(livre1, livre2);
+// console.log(livre1.getNotice());
+livre2.titre = 'test';
+// console.log(livre2.getNotice());
 
-// destructuring
+const roman1 = new Roman(20, 'La mare au diable');
+// console.log(roman1.getNotice());
+
+// template string
+const val = 'les amis';
+let templateString = `
+<div>
+	<p>"bonjour ${val}"</p>
+</div>
+`;
+// console.log(templateString);
 
 // arrow function
+const func = () => 'bonjour';
+// console.log(func());
 
-// classes
+// import/export
+// import * as livreImporte from './livre1';
+// console.log(livreImporte.petitChose);
+// livreImporte.test();
+
+// spread operator
+const add = (a, b, c) => {
+	console.log(a + b + c);
+};
+const arr = [1, 2, 3];
+add(...arr);
+const arr2 = [5, 9, ...arr];
+add(...arr2);
+
+// destructuring
+const [a, b, ...c] = arr2;
+console.log(a, b, c);
+const pierreEtSabre = {
+	livre: 'La pierre et le sabre',
+	auteur: 'Eiji Yoshikawa',
+	prix: 20,
+	type: 'roman'
+};
+const { livre, auteur } = pierreEtSabre;
+console.log(livre, auteur);
+const checkPrice = (livre) => {
+	const { prix } = livre;
+	console.log(prix);
+};
+checkPrice(pierreEtSabre);
+
+// computed keys
+const key = 'notice3';
+const notice3 = {};
+const divineLumiere = {
+	livre: 'La divine lumière',
+	auteur: 'Eiji Yoshikawa',
+	prix: 21,
+	type: 'roman',
+	[key]: notice3
+};
+console.log(divineLumiere);
