@@ -1,9 +1,21 @@
 # Ng5 Ready
 
-Current version: v0.0.1
+Current version: v0.1.0
 
 Licences: [CC-BY-NC-4.0](https://creativecommons.org/licenses/by-nc/4.0/): you can use/copy/modify any code but only without commercial intentions.
 
+
+# Choose your own branch, lesson by lesson
+
+First of all, clone it: `git clone https://github.com/n-a-n/ng5-ready.git`
+
+Then, fetch branches: `git fetch --all`
+
+Then, checkout your current lesson:
+```
+git checkout 01-javascript
+git checkout 01-es6
+```
 
 ## Development watch && serve
 
